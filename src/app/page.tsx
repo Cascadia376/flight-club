@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 const pillars = [
   {
     title: "Flight Briefing",
@@ -49,7 +53,200 @@ const launchCards = [
   },
 ];
 
+const teaserCards = [
+  {
+    title: "The Rumour",
+    text: "In-store only. No logo required. Just subtle signals that something is coming.",
+  },
+  {
+    title: "The Signal",
+    text: "The URL resolves to a minimal holding page with 19+ confirmation and email capture.",
+  },
+  {
+    title: "Briefing Zero",
+    text: "The first send acknowledges the early signups and opens the full program with context.",
+  },
+];
+
+const teaserPoints = [
+  "Mystery does more work than a polished reveal.",
+  "The teaser finds guests who notice subtle details and act early.",
+  "Staff are briefed to protect the intrigue, not explain it away.",
+];
+
+const teaserMockups = [
+  {
+    title: "Counter Card",
+    eyebrow: "Phase 1",
+    variant: "Minimal",
+    copy: "Flight Club is coming.",
+    subcopy: "We can't talk about it.\n(Yet)",
+    footer: "flightclub.ca",
+  },
+  {
+    title: "Holding Page",
+    eyebrow: "Phase 2",
+    variant: "Signal",
+    copy: "FLIGHT CLUB",
+    subcopy: "A free community for adults who take cannabis seriously. Launching soon.",
+    footer: "19+ only. Leave your email to get on the list.",
+  },
+  {
+    title: "Staff Brief",
+    eyebrow: "Phase 1 + 3",
+    variant: "Script",
+    copy: "What to say when guests ask.",
+    subcopy:
+      "It's something we're launching soon. I don't know all the details yet, but if you scan that QR you can get on the list before it opens.",
+    footer: "Do not explain the program. Preserve the mystery.",
+  },
+  {
+    title: "Briefing Zero Email",
+    eyebrow: "Phase 3",
+    variant: "Launch",
+    copy: "You found Flight Club early.",
+    subcopy: "Here’s what it actually is.",
+    footer: "Teaser list only. Sent before the public launch email.",
+  },
+];
+
+const launchSections = [
+  {
+    phase: "Phase 0",
+    title: "Foundation",
+    window: "Now - Jul 7",
+    description:
+      "Lock the program, audit the list, and build the CRM base. Nothing guest-facing moves until the foundation is approved.",
+    bullets: [
+      "Confirm the launch guardrails and compliance language",
+      "Audit the existing list and classify consent",
+      "Build the AIQ base, tags, and source tracking",
+    ],
+  },
+  {
+    phase: "Phase 1",
+    title: "Teaser Prep",
+    window: "Jul 8 - Jul 13",
+    description:
+      "Get the teaser platform ready before it goes live. Approvals, holding page, print pieces, and staff brief all happen here.",
+    bullets: [
+      "Approve teaser copy and in-store card direction",
+      "Finalize the holding page and age gate",
+      "Print counter cards and brief the team",
+    ],
+  },
+  {
+    phase: "Phase 2",
+    title: "The Whisper",
+    window: "Jul 14 - Jul 21",
+    description:
+      "The guest-facing teaser period. Cards go out, the page goes live, and a single email reaches the clean list.",
+    bullets: [
+      "Put counter cards into stores and bags",
+      "Send the teaser email to the clean existing list",
+      "Keep the staff talk track short and mysterious",
+    ],
+  },
+  {
+    phase: "Phase 3",
+    title: "Founding Launch",
+    window: "Jul 22",
+    description:
+      "Briefing Zero goes first, then the public launch email. The QR code also goes live in-store at open.",
+    bullets: [
+      "Send Briefing Zero to the teaser list first",
+      "Send the launch email to the full clean audience",
+      "Activate the QR code in-store",
+    ],
+  },
+  {
+    phase: "Phase 4",
+    title: "Shape It",
+    window: "Jul 23 - Aug 11",
+    description:
+      "The first three weeks after launch establish the rhythm. The Briefing, profile builder, and community cues start doing their work.",
+    bullets: [
+      "Publish the first Flight Briefing",
+      "Drive Flight Profile completion",
+      "Let participatory content and repeat visits compound",
+    ],
+  },
+  {
+    phase: "Phase 5",
+    title: "Brand Reveal",
+    window: "Mid-Aug",
+    description:
+      "The full Flight Club visual and verbal system goes public. The teaser audience gets the payoff for being early.",
+    bullets: [
+      "Reveal the complete brand expression",
+      "Open with the line: Okay, now we can talk about Flight Club.",
+      "Use the founding audience as social proof for the reveal",
+    ],
+  },
+];
+
+const launchMilestones = [
+  "Jul 7: foundation locked",
+  "Jul 13: teaser prep complete",
+  "Jul 17: go / no-go decision",
+  "Jul 22: founding launch",
+  "Mid-Aug: brand reveal",
+];
+
 export default function Home() {
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    const sections = sectionRefs.current;
+
+    const scrollToIndex = (index: number) => {
+      const target = sections[index];
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(event.key)) {
+        return;
+      }
+
+      const currentY = window.scrollY;
+      const offsets = sections
+        .map((section, index) => (section ? { index, top: section.offsetTop } : null))
+        .filter((item): item is { index: number; top: number } => item !== null)
+        .sort((a, b) => a.top - b.top);
+
+      if (!offsets.length) {
+        return;
+      }
+
+      const activeIndex = offsets.reduce((closest, item) => {
+        const distance = Math.abs(item.top - currentY);
+        const closestDistance = Math.abs(offsets[closest].top - currentY);
+        return distance < closestDistance ? item.index : offsets[closest].index;
+      }, offsets[0].index);
+
+      const currentPosition = offsets.findIndex((item) => item.index === activeIndex);
+      if (currentPosition === -1) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+        scrollToIndex(offsets[Math.min(currentPosition + 1, offsets.length - 1)].index);
+      }
+
+      if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+        scrollToIndex(offsets[Math.max(currentPosition - 1, 0)].index);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
     <main className="page">
       <header className="topbar">
@@ -58,7 +255,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="hero dark-band">
+      <section className="hero dark-band" ref={(node) => { sectionRefs.current[0] = node; }}>
         <div className="hero-copy">
           <span className="eyebrow gold">For Flight Cannabis</span>
           <h1>
@@ -81,7 +278,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section intro-section hypothesis-section">
+      <section className="content-section intro-section hypothesis-section" ref={(node) => { sectionRefs.current[1] = node; }}>
         <div className="text-block hypothesis-copy">
           <span className="eyebrow">Strategic Hypothesis</span>
           <h2>Cannabis guests behave differently.</h2>
@@ -116,7 +313,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section feature-strip">
+      <section className="content-section feature-strip" ref={(node) => { sectionRefs.current[2] = node; }}>
         <div className="section-title">
           <span className="eyebrow gold">Program Pillars</span>
           <h2>Three routines keep guests engaged.</h2>
@@ -134,7 +331,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section beige-band">
+      <section className="content-section beige-band" ref={(node) => { sectionRefs.current[3] = node; }}>
         <div className="section-title narrow">
           <span className="eyebrow gold">Guest Journey</span>
           <h2>Relevant sends should feel like the next obvious step.</h2>
@@ -183,7 +380,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section quote-section pale">
+      <section className="content-section quote-section pale" ref={(node) => { sectionRefs.current[4] = node; }}>
         <span className="eyebrow gold">Program Positioning</span>
         <blockquote>
           Flight Club is not loyalty, rewards, or member-only discounts. It is a free 19+ member
@@ -196,10 +393,10 @@ export default function Home() {
         </ul>
       </section>
 
-      <section className="content-section white-band">
+      <section className="content-section white-band" ref={(node) => { sectionRefs.current[5] = node; }}>
         <div className="section-title narrow">
           <span className="eyebrow gold">Launch Timeline</span>
-          <h2>The first month is staged to make the launch auditable.</h2>
+          <h2>Streamlined Launch Timeline</h2>
         </div>
         <div className="pillar-grid four-up">
           {launchCards.map((item) => (
@@ -211,27 +408,156 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section split-section sand">
-        <div className="text-block compact">
-          <span className="eyebrow">Growth Loop</span>
-          <h2>Flight Club gets smarter with every guest signal.</h2>
-          <p>
-            Signups, clicks, replies, redemptions, and store visits all shape the next message,
-            making each send more relevant than the last.
-          </p>
+      <section className="content-section teaser-section" ref={(node) => { sectionRefs.current[6] = node; }}>
+        <div className="section-title">
+          <span className="eyebrow gold">Teaser Campaign</span>
+          <h2>Flight Club Rumours</h2>
         </div>
+        <div className="teaser-intro">
+          <p>
+            The teaser campaign turns scarcity into momentum. Rather than fully explaining the
+            program, it uses mystery, a holding page, and a staff brief to build curiosity before
+            the brand is complete.
+          </p>
+          <ul className="principles teaser-points">
+            {teaserPoints.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="teaser-reveal-stack">
+          {teaserMockups.map((item) => (
+            <article key={item.title} className="teaser-reveal">
+              <div className="teaser-mockup-top">
+                <span className="card-kicker">{item.eyebrow}</span>
+                <strong>{item.title}</strong>
+              </div>
+              <div className="teaser-reveal-body">
+                <div className={`teaser-mockup-panel teaser-${item.variant.toLowerCase()}`}>
+                  {item.title === "Counter Card" ? (
+                    <>
+                      <h3>{item.copy}</h3>
+                      <div className="counter-card-layout">
+                        <div className="counter-card-copy">
+                          <p className="counter-card-lines">
+                            <span>We can't talk about it.</span>
+                            <span>(Yet)</span>
+                          </p>
+                          <span className="teaser-footer">{item.footer}</span>
+                        </div>
+                        <div className="qr-block" aria-label="QR code image">
+                          <img src="/teaser-qr.png" alt="QR code" />
+                        </div>
+                      </div>
+                    </>
+                  ) : item.title === "Holding Page" ? (
+                    <>
+                      <h3>{item.copy}</h3>
+                      <div className="holding-page-layout">
+                        <p>{item.subcopy}</p>
+                        <div className="holding-form">
+                          <label>
+                            <span>Email</span>
+                            <div className="holding-input" />
+                          </label>
+                          <label>
+                            <span>19+ confirmation</span>
+                            <div className="holding-checkbox-row">
+                              <div className="holding-checkbox" />
+                              <span>Yes, I am 19 or older.</span>
+                            </div>
+                          </label>
+                          <div className="holding-button" />
+                        </div>
+                        <span className="teaser-footer">{item.footer}</span>
+                      </div>
+                    </>
+                  ) : item.title === "Staff Brief" ? (
+                    <>
+                      <h3>{item.copy}</h3>
+                      <div className="staff-brief-layout">
+                        <p>{item.subcopy}</p>
+                        <div className="staff-script">
+                          <span className="staff-script-label">If a guest asks:</span>
+                          <div className="staff-script-quote">“What’s Flight Club?”</div>
+                          <div className="staff-script-answer">
+                            “I can&apos;t talk about it, but it launches soon. I can add you to
+                            the list.”
+                          </div>
+                        </div>
+                        <span className="teaser-footer">{item.footer}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="email-mockup-layout">
+                      <div className="email-meta">Subject line</div>
+                      <h3>{item.copy}</h3>
+                      <p className="email-preview">{item.subcopy}</p>
+                      <div className="email-body">
+                        <p>
+                          Thanks for being curious. You found Flight Club before the full launch,
+                          and this is the part we owe you: the real thing, not the rumour.
+                        </p>
+                        <p>
+                          Flight Club is a free community for adults who take cannabis seriously.
+                          It is built for useful, recurring communication, not loyalty tropes or
+                          discount noise.
+                        </p>
+                        <div className="email-signoff">
+                          <div className="email-signoff-line" />
+                          <span>Flight Cannabis</span>
+                        </div>
+                      </div>
+                      <span className="teaser-footer">{item.footer}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        <div className="image-mock dark-image">
-          <div className="mock-frame">
-            <div className="mock-topline light" />
-            <div className="mock-panel dark-panel">
-              <div className="mock-panel-shape chart" />
-            </div>
+      <section className="content-section launch-plan-section" ref={(node) => { sectionRefs.current[7] = node; }}>
+        <div className="section-title">
+          <span className="eyebrow gold">Launch Plan</span>
+          <h2>The launch unfolds in six deliberate moves.</h2>
+        </div>
+        <div className="launch-stack">
+          {launchSections.map((item) => (
+            <article key={item.phase} className="launch-band">
+              <div className="launch-band-top">
+                <span className="card-kicker">{item.phase}</span>
+                <h3>{item.title}</h3>
+                <span className="launch-window">{item.window}</span>
+              </div>
+              <div className="launch-band-body">
+                <p>{item.description}</p>
+                <ul>
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="launch-summary">
+          <div className="launch-summary-title">
+            <span className="eyebrow gold">Master Timeline</span>
+            <h3>Every milestone in one glance.</h3>
+          </div>
+          <div className="launch-summary-row">
+            {launchMilestones.map((item) => (
+              <div key={item} className="launch-summary-chip">
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="content-section white-band closing-band" id="closing">
+      <section className="content-section white-band closing-band" id="closing" ref={(node) => { sectionRefs.current[8] = node; }}>
         <div className="closing-grid">
           <div className="closing-copy">
             <img className="closing-logo" src="/flight-logo-black.svg" alt="Flight" />
