@@ -1,0 +1,435 @@
+.slide {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-margin-top: 64px;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.metricCard {
+  min-height: 320px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.metricValue {
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(6rem, 13vw, 11rem);
+  line-height: 0.78;
+  letter-spacing: -0.075em;
+  color: var(--navy);
+}
+
+.metricLabel {
+  margin-top: 1.5rem;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 650;
+}
+
+.metricNote {
+  margin-top: 0.5rem;
+  color: var(--text-soft);
+  max-width: 32rem;
+  line-height: 1.55;
+}
+
+.mantra {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+}
+
+.mantra h2 {
+  max-width: 13ch;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(4rem, 8vw, 7.6rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.mantraSub {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 1rem;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.programGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin-top: 1.75rem;
+}
+
+.programDefinition {
+  padding: 2rem;
+  background: var(--navy);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+}
+
+.programDefinition strong {
+  display: block;
+  max-width: 13ch;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.pillarGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.pillar {
+  padding: 1.4rem;
+  min-height: 170px;
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.pillar strong {
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: 1.5rem;
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.compareCard {
+  padding: 2rem;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.compareCardDark {
+  background: linear-gradient(180deg, #14263d 0%, #0d1726 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.compareTitle {
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.flow {
+  margin-top: 2rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.memberGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.memberCard {
+  padding: 1.35rem;
+  min-height: 190px;
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.memberCard strong {
+  display: block;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: 1.45rem;
+  margin-bottom: 0.55rem;
+}
+
+.journeyLine {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(16, 28, 46, 0.18);
+}
+
+.journeyStep {
+  padding: 1.5rem 1rem 0;
+  position: relative;
+}
+
+.journeyStep::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  top: -7px;
+  left: 1rem;
+}
+
+.journeyStep strong {
+  display: block;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+}
+
+.question {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.question blockquote {
+  max-width: 15ch;
+  margin: 0 auto;
+  font-size: clamp(3.6rem, 7.2vw, 7rem);
+}
+
+.questionNote {
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 650;
+}
+
+.outcomeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.outcomeCard {
+  min-height: 300px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.outcomeCard strong {
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1;
+}
+
+.outcomeAction {
+  font-size: 1.2rem;
+  font-weight: 650;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 2rem;
+}
+
+.processStep {
+  padding: 1.2rem;
+  min-height: 210px;
+  border-top: 4px solid var(--gold);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.processNumber {
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--navy);
+}
+
+.processStep p {
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.failure {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  align-content: center;
+  gap: 1.2rem;
+}
+
+.failure h2 {
+  max-width: 14ch;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(3.8rem, 7vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.failureSteps {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.failureSteps span {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.gmGrid {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.notJob,
+.job {
+  padding: 2rem;
+  min-height: 360px;
+}
+
+.notJob {
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.notJob strong {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 0.95;
+}
+
+.job {
+  background: var(--navy);
+  color: white;
+}
+
+.job ul {
+  display: grid;
+  gap: 0.9rem;
+  padding-left: 1.2rem;
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+.learningGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.learningItem {
+  padding: 1.25rem;
+  min-height: 150px;
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.76);
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 650;
+}
+
+.closeGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  min-height: calc(100vh - 64px);
+  align-items: center;
+  gap: 2rem;
+}
+
+.closeCopy h2 {
+  max-width: 12ch;
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(3.4rem, 6vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.closeCopy p {
+  margin-top: 1.5rem;
+  font-size: 1.45rem;
+  font-weight: 650;
+}
+
+.closeImage img {
+  display: block;
+  width: 100%;
+  max-height: 650px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .metricGrid,
+  .programGrid,
+  .compareGrid,
+  .gmGrid,
+  .closeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .memberGrid,
+  .outcomeGrid,
+  .learningGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .processGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .metricGrid,
+  .pillarGrid,
+  .memberGrid,
+  .outcomeGrid,
+  .processGrid,
+  .learningGrid,
+  .journeyLine {
+    grid-template-columns: 1fr;
+  }
+
+  .journeyLine {
+    border-top: 0;
+  }
+
+  .journeyStep {
+    border-left: 1px solid rgba(16, 28, 46, 0.18);
+    padding: 0.75rem 0 1.5rem 1.5rem;
+  }
+
+  .journeyStep::before {
+    top: 0.8rem;
+    left: -7px;
+  }
+}
