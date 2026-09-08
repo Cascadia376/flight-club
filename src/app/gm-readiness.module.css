@@ -150,16 +150,46 @@
   line-height: 1.5;
 }
 
+.memberLayout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+}
+
+.memberPoster {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.memberPoster img {
+  display: block;
+  width: min(100%, 430px);
+  max-height: 650px;
+  object-fit: contain;
+  box-shadow: 0 18px 42px rgba(16, 28, 46, 0.16);
+}
+
+.memberContent {
+  min-width: 0;
+}
+
+.memberContent :global(.section-title) {
+  margin-bottom: 1.1rem;
+}
+
 .memberGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  margin-top: 1.75rem;
+  margin-top: 1rem;
 }
 
 .memberCard {
-  padding: 1.35rem;
-  min-height: 190px;
+  padding: 1.15rem 1.2rem;
+  min-height: 145px;
   border: 1px solid rgba(16, 28, 46, 0.12);
   background: rgba(255, 255, 255, 0.78);
 }
@@ -167,8 +197,13 @@
 .memberCard strong {
   display: block;
   font-family: var(--font-hanken-grotesk), Arial, sans-serif;
-  font-size: 1.45rem;
-  margin-bottom: 0.55rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.45rem;
+}
+
+.memberCard p {
+  color: var(--text-soft);
+  line-height: 1.45;
 }
 
 .journeyLine {
@@ -423,10 +458,19 @@
   .metricGrid,
   .programGrid,
   .compareGrid,
+  .memberLayout,
   .gmGrid,
   .closeGrid,
   .outcomeLayout {
     grid-template-columns: 1fr;
+  }
+
+  .memberPoster {
+    justify-content: center;
+  }
+
+  .memberPoster img {
+    width: min(72vw, 380px);
   }
 
   .memberGrid,
@@ -452,6 +496,10 @@
   .journeyLine,
   .outcomeSplit {
     grid-template-columns: 1fr;
+  }
+
+  .memberCard {
+    min-height: 130px;
   }
 
   .outcomeMiniCard {
