@@ -26,12 +26,6 @@ const journey = [
   ["Return", "We create another reason to come back."],
 ];
 
-const outcomes = [
-  ["Already a member", "Identify → continue"],
-  ["Interested", "Help them join"],
-  ["Not interested", "No problem → continue"],
-];
-
 const signupSteps = [
   "Guest uses the approved signup method",
   "Completes required information",
@@ -261,16 +255,23 @@ export default function Home() {
           <span className="eyebrow gold">Three possible answers</span>
           <h2>Every interaction stays simple.</h2>
         </div>
-        <div className={styles.outcomeGrid}>
-          {outcomes.map(([title, action], index) => (
-            <article
-              className={`${styles.outcomeCard} ${index === 1 ? "card-dark-feature" : ""}`}
-              key={title}
-            >
-              <strong>{title}</strong>
-              <div className={styles.outcomeAction}>{action}</div>
+        <div className={styles.outcomeLayout}>
+          <article className={styles.outcomeCard}>
+            <strong>Already a member</strong>
+            <div className={styles.outcomeAction}>Identify → continue</div>
+          </article>
+          <div className={styles.outcomeSplit}>
+            <article className={`${styles.outcomeMiniCard} ${styles.outcomeMiniCardDark}`}>
+              <strong>Interested</strong>
             </article>
-          ))}
+            <article className={styles.outcomeMiniCard}>
+              <strong>Help them join</strong>
+            </article>
+          </div>
+          <article className={styles.outcomeCard}>
+            <strong>Not interested</strong>
+            <div className={styles.outcomeAction}>No problem → continue</div>
+          </article>
         </div>
       </section>
 
