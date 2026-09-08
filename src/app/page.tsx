@@ -49,6 +49,72 @@ const learningAreas = [
   "Messaging and engagement",
 ];
 
+function FlightClubPoster() {
+  return (
+    <svg
+      viewBox="0 0 737 956"
+      role="img"
+      aria-label="Flight Club poster"
+      style={{ width: "100%", height: "auto", display: "block" }}
+    >
+      <rect width="737" height="956" fill="#2f4b57" />
+      <rect y="780" width="737" height="176" fill="#ffffff" />
+
+      <text
+        x="368.5"
+        y="82"
+        textAnchor="middle"
+        fill="#ffffff"
+        fontFamily="Georgia, serif"
+        fontSize="34"
+        fontStyle="italic"
+      >
+        Flight   CANNABIS CO.
+      </text>
+
+      <rect x="128" y="132" width="481" height="350" fill="#f7f7f5" />
+      <text
+        x="368.5"
+        y="260"
+        textAnchor="middle"
+        fill="#2f4b57"
+        fontFamily="Arial Black, Arial, sans-serif"
+        fontSize="104"
+        fontWeight="900"
+        letterSpacing="5"
+      >
+        FLIGHT
+      </text>
+      <rect x="149" y="295" width="438" height="166" fill="#2f4b57" />
+      <text
+        x="368.5"
+        y="427"
+        textAnchor="middle"
+        fill="#f47721"
+        fontFamily="Arial Black, Arial, sans-serif"
+        fontSize="125"
+        fontWeight="900"
+        letterSpacing="4"
+      >
+        CLUB
+      </text>
+
+      <text x="368.5" y="545" textAnchor="middle" fill="#f47721" fontFamily="Arial Black, Arial, sans-serif" fontSize="34" fontWeight="900">Free to Join</text>
+      <text x="368.5" y="575" textAnchor="middle" fill="#ffffff" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700">In-Store | Online</text>
+
+      <text x="368.5" y="632" textAnchor="middle" fill="#f47721" fontFamily="Arial Black, Arial, sans-serif" fontSize="34" fontWeight="900">First to Know</text>
+      <text x="368.5" y="663" textAnchor="middle" fill="#ffffff" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700">New Drops | Sales | Giveaways</text>
+
+      <text x="368.5" y="720" textAnchor="middle" fill="#f47721" fontFamily="Arial Black, Arial, sans-serif" fontSize="34" fontWeight="900">More to Discover</text>
+      <text x="368.5" y="751" textAnchor="middle" fill="#ffffff" fontFamily="Arial, sans-serif" fontSize="19" fontWeight="700">Product Picks | New Discoveries | Tips &amp; Know-How</text>
+
+      <text x="368.5" y="858" textAnchor="middle" fill="#a9c8d5" fontFamily="Arial Black, Arial, sans-serif" fontSize="53" fontWeight="900">Ready to Board?</text>
+      <text x="368.5" y="902" textAnchor="middle" fill="#2f4b57" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="600">Get first access to cannabis updates you actually want</text>
+      <text x="368.5" y="932" textAnchor="middle" fill="#a9c8d5" fontFamily="Arial, sans-serif" fontSize="11">Must be 19+ to join.</text>
+    </svg>
+  );
+}
+
 export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -215,7 +281,7 @@ export default function Home() {
       <section className={`content-section feature-strip ${styles.slide}`} ref={setSectionRef(5)}>
         <div className={styles.memberLayout}>
           <div className={styles.memberPoster}>
-            <img src="/flight-club-poster-clean.webp" alt="Flight Club poster" />
+            <FlightClubPoster />
           </div>
           <div className={styles.memberContent}>
             <div className="section-title">
