@@ -220,11 +220,12 @@
   font-weight: 650;
 }
 
-.outcomeGrid {
+.outcomeLayout {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 1.75rem;
+  align-items: stretch;
 }
 
 .outcomeCard {
@@ -246,6 +247,36 @@
 .outcomeAction {
   font-size: 1.2rem;
   font-weight: 650;
+}
+
+.outcomeSplit {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-content: center;
+}
+
+.outcomeMiniCard {
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 1px solid rgba(16, 28, 46, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.outcomeMiniCard strong {
+  font-family: var(--font-hanken-grotesk), Arial, sans-serif;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1;
+}
+
+.outcomeMiniCardDark {
+  background: linear-gradient(180deg, #14263d 0%, #0d1726 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .processGrid {
@@ -393,12 +424,12 @@
   .programGrid,
   .compareGrid,
   .gmGrid,
-  .closeGrid {
+  .closeGrid,
+  .outcomeLayout {
     grid-template-columns: 1fr;
   }
 
   .memberGrid,
-  .outcomeGrid,
   .learningGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -406,17 +437,26 @@
   .processGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .outcomeSplit {
+    max-width: 520px;
+  }
 }
 
 @media (max-width: 640px) {
   .metricGrid,
   .pillarGrid,
   .memberGrid,
-  .outcomeGrid,
   .processGrid,
   .learningGrid,
-  .journeyLine {
+  .journeyLine,
+  .outcomeSplit {
     grid-template-columns: 1fr;
+  }
+
+  .outcomeMiniCard {
+    aspect-ratio: auto;
+    min-height: 180px;
   }
 
   .journeyLine {
