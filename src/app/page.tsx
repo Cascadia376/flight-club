@@ -11,12 +11,10 @@ const programPillars = [
 ];
 
 const memberValue = [
-  ["Welcome", "A clear introduction to Flight Club and what membership means."],
-  ["Flight Briefings", "A recurring editorial rhythm built around useful content."],
-  ["Curated education", "Practical information without turning every message into a promotion."],
-  ["Product discovery", "Guidance that helps members find what is relevant to them."],
-  ["Flight Profiles", "Preference-based discovery that can become more useful over time."],
-  ["Participation", "Polls, Ask Flight, and first notice of relevant news or events."],
+  ["Flight Updates", "Be the first to know about new drops, sales, giveaways, and events."],
+  ["Fresh Fridays", "A recurring editorial rhythm featuring product picks, new discoveries, and tips."],
+  ["Curated Education", "Practical information without turning every message into a promotion."],
+  ["Personalized Promotions", "Relevant offers and recommendations based on what members are into."],
 ];
 
 const journey = [
@@ -215,17 +213,24 @@ export default function Home() {
       </section>
 
       <section className={`content-section feature-strip ${styles.slide}`} ref={setSectionRef(5)}>
-        <div className="section-title">
-          <span className="eyebrow gold">At launch</span>
-          <h2>What members get.</h2>
-        </div>
-        <div className={styles.memberGrid}>
-          {memberValue.map(([title, text]) => (
-            <article className={styles.memberCard} key={title}>
-              <strong>{title}</strong>
-              <p>{text}</p>
-            </article>
-          ))}
+        <div className={styles.memberLayout}>
+          <div className={styles.memberPoster}>
+            <img src="/flight-club-poster.webp" alt="Flight Club poster" />
+          </div>
+          <div className={styles.memberContent}>
+            <div className="section-title">
+              <span className="eyebrow gold">At launch</span>
+              <h2>What members get.</h2>
+            </div>
+            <div className={styles.memberGrid}>
+              {memberValue.map(([title, text]) => (
+                <article className={styles.memberCard} key={title}>
+                  <strong>{title}</strong>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
