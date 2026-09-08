@@ -215,7 +215,7 @@ export default function Home() {
       <section className={`content-section feature-strip ${styles.slide}`} ref={setSectionRef(5)}>
         <div className={styles.memberLayout}>
           <div className={styles.memberPoster}>
-            <img src="/flight-club-poster.webp" alt="Flight Club poster" />
+            <img src="/flight-club-poster.jpg" alt="Flight Club poster" />
           </div>
           <div className={styles.memberContent}>
             <div className="section-title">
