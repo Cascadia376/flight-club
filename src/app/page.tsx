@@ -199,13 +199,13 @@ export default function Home() {
 
       <section className={`content-section white-band ${styles.slide}`} ref={setSectionRef(4)}>
         <div className="section-title">
-          <span className="eyebrow gold">Important distinction</span>
-          <h2>This is not Cascadia Loyalty.</h2>
+          <span className="eyebrow gold">A different model</span>
+          <h2>Flight Club is built differently.</h2>
         </div>
         <div className={styles.compareGrid}>
           <article className={styles.compareCard}>
             <div>
-              <span className="eyebrow">Cascadia</span>
+              <span className="eyebrow">Traditional loyalty</span>
               <div className={styles.compareTitle}>Transactional loyalty</div>
             </div>
             <div className={styles.flow}>Shop → earn value → return</div>
